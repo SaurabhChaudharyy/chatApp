@@ -1,7 +1,17 @@
-import { HomePage } from "@/components/home-page";
+"use client"
+import { Button } from "@/components/ui/button"
+import HomeComponent from "@/components/home";
 
-export default function Component() {
-return(<div>
-  <HomePage />
-</div>)
+
+
+function popup() {
+  alert("heelo user");
+}
+export default function Home() {
+  return (
+    <div>
+      <Button variant="outline" onClick={popup}>Button</Button>
+      <HomeComponent />
+    </div>
+  )
 }
