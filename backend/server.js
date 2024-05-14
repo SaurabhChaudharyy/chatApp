@@ -1,12 +1,15 @@
 const express = require("express");
-const { chats } = require("./data/data");
 const dotenv = require("dotenv");
 const connectDB = require("./config/db");
 const colors = require("colors");
+const userRoutes = require("./routes/userRoutes");
 const app = express();
+const bodyParser = require('body-parser');
+const { notFound, errorHandler } = require("./middleware/errorHandler");
 dotenv.config();
 
 connectDB();
+app.use(bodyParser.json());
 
 app.get("/", (req, res) => {
   res.send({
@@ -15,6 +18,8 @@ app.get("/", (req, res) => {
 });
 
 app.use("/api/user", userRoutes);
+app.use(notFound);
+app.use(errorHandler);
 
 const PORT = process.env.PORT;
 
